@@ -86,7 +86,7 @@ export function App() {
   }
   return <div className="app">
     <a className="skip-link" href="#main">Ir para o conteúdo</a>
-    <header className="app-header"><a className="brand" href="#main" aria-label="Pace, conversor de corrida"><span className="brand-mark" aria-hidden="true">↗</span><span>Pace<small>Seu ritmo, em números.</small></span></a></header>
+    <header className="app-header"><a className="brand" href="#main" aria-label="Pace, conversor de corrida"><img className="brand-mark" src={`${import.meta.env.BASE_URL}pace-icon-192.png`} width="44" height="44" alt="" /><span>Pace<small>Seu ritmo, em números.</small></span></a></header>
     <div className="tabs" role="tablist" aria-label="Ferramentas" onKeyDown={tabKeys}>
       {([{ value: 'nomogram', label: 'Nomograma' }, { value: 'calculator', label: 'Calculadora' }] as const).map(({ value, label }) => <button key={value} type="button"
         id={`tab-${value}`} role="tab" aria-controls={`panel-${value}`} aria-selected={state.tab === value} tabIndex={state.tab === value ? 0 : -1} onClick={() => patch({ tab: value })}>{label}</button>)}

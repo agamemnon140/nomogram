@@ -87,6 +87,16 @@ try {
   assert.equal(await pace(), 300)
   assert.equal(await page.$eval('[data-distance="10"]', el => el.textContent), '50:00')
   pass('default pace and race times')
+  assert.equal(await page.$eval('.brand-mark', image => image.complete && image.naturalWidth === 192), true)
+  const manifestResponse = await fetch(new URL('manifest.webmanifest', base))
+  const manifest = await manifestResponse.json()
+  assert.deepEqual(manifest.icons.map(icon => icon.src), ['pace-icon-192.png', 'pace-icon-512.png'])
+  for (const icon of manifest.icons) assert.ok((await fetch(new URL(icon.src, base))).ok)
+  for (const selector of ['link[rel="apple-touch-icon"]', 'link[rel="icon"][sizes="32x32"]', 'link[rel="icon"][sizes="48x48"]']) {
+    const href = await page.$eval(selector, element => element.href)
+    assert.ok((await fetch(href)).ok)
+  }
+  pass('new app icon loads in the header, install manifest and browser links')
   await accessibility('desktop-light')
   await screenshot('desktop-light.png')
 

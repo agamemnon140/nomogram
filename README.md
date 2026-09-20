@@ -18,6 +18,7 @@ npm test                # Regressões, unidades, conversões e validação do es
 npm run build          # Verificação de tipos e geração de dist/
 npm run test:browser   # Navegação, teclado, toque, persistência, PWA e atualização
 npm run preview        # Servir o build local
+npm run icons          # Regerar ícones PNG a partir da imagem original
 ```
 
 Os testes de navegador usam Chrome ou Edge instalado, sem baixar um navegador. Defina `CHROME_PATH` se necessário. `npm run check` executa todos os checks, incluindo auditorias automáticas de acessibilidade com axe em telas claras/escuras e no celular. Capturas e relatórios ficam em `artifacts/` (não versionados).
@@ -52,11 +53,12 @@ src/domain/       Cálculos puros, parser, formato de estado e testes
 src/components/   Mostrador, entrada direta, planejamento e calculadora
 src/App.tsx       Estado compartilhado, persistência, tema, abas e atualização
 src/styles.css    Interface responsiva e temas
-public/           Ícones originais
+public/           Ícones para instalação, cabeçalho e favicon
+assets/brand/     Imagem original e prompt de geração do novo ícone
 scripts/          Testes em navegador real
 ```
 
-O repositório original continha apenas o bundle publicado. Esta versão reconstrói fontes editáveis mantendo o mostrador circular, a paleta laranja, os ícones, a calculadora e as opções de escala e aparência. O commit `b736cf6` preserva a versão compilada anterior no histórico.
+O repositório original continha apenas o bundle publicado. Esta versão reconstrói fontes editáveis mantendo o mostrador circular, a paleta laranja, a calculadora e as opções de escala e aparência. O novo ícone mantém o conceito do instrumento circular, com menos detalhes para legibilidade em tamanhos pequenos. O commit `b736cf6` preserva a versão compilada anterior no histórico. A imagem original e seu prompt estão em [assets/brand](assets/brand/README.md); `npm run icons` gera as versões de 32, 48, 180, 192 e 512 px.
 
 ## Offline e atualizações
 
